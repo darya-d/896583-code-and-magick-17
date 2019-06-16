@@ -15,7 +15,7 @@ var GAP = 10;
  * @param {number} y - начальная координата по вертикали
  * @param {string} color - цвет фона облака
  */
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
@@ -26,7 +26,7 @@ var renderCloud = function(ctx, x, y, color) {
  * @param {array} arr - массив очков
  * @return {number} maxElement - значение максимального количества очков
  */
-var getMaxElement = function(arr) {
+var getMaxElement = function (arr) {
   var maxElement = arr[0];
 
   for (var i = 1; i < arr.length; i++) {
@@ -45,7 +45,7 @@ var getMaxElement = function(arr) {
  * @param {array} players - массив имен игроков
  * @param {array} times - массив очков игроков (в секундах)
  */
-window.renderStatistics = function(ctx, players, times) {
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_START_X + GAP, CLOUD_START_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_START_X, CLOUD_START_Y, '#fff');
 
@@ -78,7 +78,7 @@ window.renderStatistics = function(ctx, players, times) {
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'hsl(240, ' + (Math.random() * 100) + '%, 50%)';;
+      ctx.fillStyle = 'hsl(240, ' + (Math.random() * 100) + '%, 50%)';
     }
     // Рисуем гистограмму исходя из очков
     ctx.fillRect(BAR_START_X + GAP + BAR_GAP * i, BAR_START_Y + BAR_GAP, BAR_WIDTH, (BAR_HEIGHT_MAX * times[i]) / maxTime);
