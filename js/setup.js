@@ -56,9 +56,9 @@ var eyesColors = [
 
 /**
  * Функция генерации случайного значения
- * @return {number}
+ *
+ * @return {number} arrayLength - длина массива
  */
-
 var getRandomNumber = function (arrayLength) {
   return Math.floor(Math.random() * arrayLength);
 };
@@ -68,13 +68,10 @@ var getRandomNumber = function (arrayLength) {
  *
  * @return {number} - номер случайного элемента массива
  */
-
-// Генерируем имя
 var generateRandomFirstWizardName = function () {
   return firstWizardNames[getRandomNumber(firstWizardNames.length)];
 };
 
-// Генерируем фамилию
 var generateRandomSecondWizardName = function () {
   return secondWizardNames[getRandomNumber(secondWizardNames.length)];
 };
@@ -84,7 +81,6 @@ var generateRandomSecondWizardName = function () {
  *
  * @return {number} - номер случайного элемента массива
  */
-
 var generateRandomСoatColor = function () {
   return coatColors[getRandomNumber(coatColors.length)];
 };
@@ -94,7 +90,6 @@ var generateRandomСoatColor = function () {
  *
  * @return {number} - номер случайного элемента массива
  */
-
 var generateRandomEyesColor = function () {
   return eyesColors[getRandomNumber(eyesColors.length)];
 };
@@ -103,13 +98,12 @@ var generateRandomEyesColor = function () {
  * Функция для создания массива из 4 сгенерированных JS объектов - магов.
  *
  * @param {array} wizards - массив, состоящий из 4-х сгенерированных JS объектов, описывающих похожих персонажей
- * @param {object} - сгенерированный маг, содержащий поля name, coatColor и eyesColor
+ * @return {object} - сгенерированный маг, содержащий поля name, coatColor и eyesColor
  */
+var generateWizards = function (countWizards) {
+  var wizards = [];
 
-var wizards = [];
-
-var generateArrayOfWizards = function () {
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < countWizards; i++) {
     wizards[i] = {
       name: generateRandomFirstWizardName() + ' ' + generateRandomSecondWizardName(),
       coatColor: generateRandomСoatColor(),
@@ -119,8 +113,6 @@ var generateArrayOfWizards = function () {
   return wizards;
 };
 
-generateArrayOfWizards();
-
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -128,6 +120,12 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
+/**
+ * Функция рендерит мага
+ *
+ * @param {object} wizard
+ * @return {*}
+ */
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -144,6 +142,8 @@ var renderWizard = function (wizard) {
 };
 
 // Отрисуйте сгенерированные DOM-элементы в блок .setup-similar-list. Для вставки элементов используйте DocumentFragment.
+var wizards = generateWizards(4);
+
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
