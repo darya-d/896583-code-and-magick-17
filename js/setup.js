@@ -57,7 +57,8 @@ var eyesColors = [
 /**
  * Функция генерации случайного значения
  *
- * @return {number} arrayLength - длина массива
+ * @param {array} arrayLength - длина массива
+ * @return {number}
  */
 var getRandomNumber = function (arrayLength) {
   return Math.floor(Math.random() * arrayLength);
@@ -97,6 +98,7 @@ var generateRandomEyesColor = function () {
 /**
  * Функция для создания массива из 4 сгенерированных JS объектов - магов.
  *
+ * @param {number} countWizards - количество магов
  * @param {array} wizards - массив, состоящий из 4-х сгенерированных JS объектов, описывающих похожих персонажей
  * @return {object} - сгенерированный маг, содержащий поля name, coatColor и eyesColor
  */
