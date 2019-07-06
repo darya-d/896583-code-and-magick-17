@@ -53,46 +53,51 @@ var eyesColors = [
   'yellow',
   'green'
 ];
+
 /**
  * Функция генерации случайного значения
  * @return {number}
  */
-var _getRandomNumber = function(arrayLength) {
+
+var getRandomNumber = function (arrayLength) {
   return Math.floor(Math.random() * arrayLength);
-}
+};
 
 /**
  * Функция генерации имени мага
  *
  * @return {number} - номер случайного элемента массива
  */
-//  Генерируем имя
+
+// Генерируем имя
 var generateRandomFirstWizardName = function () {
-  return firstWizardNames[_getRandomNumber(firstWizardNames.length)];
- }
+  return firstWizardNames[getRandomNumber(firstWizardNames.length)];
+};
 
 // Генерируем фамилию
 var generateRandomSecondWizardName = function () {
-  return secondWizardNames[_getRandomNumber(secondWizardNames.length)];
- }
+  return secondWizardNames[getRandomNumber(secondWizardNames.length)];
+};
 
 /**
  * Функция генерации цвета мантии мага
  *
  * @return {number} - номер случайного элемента массива
  */
+
 var generateRandomСoatColor = function () {
-  return coatColors[_getRandomNumber(coatColors.length)];
- }
+  return coatColors[getRandomNumber(coatColors.length)];
+};
 
 /**
  * Функция генерации цвета глаз мага
  *
  * @return {number} - номер случайного элемента массива
  */
+
 var generateRandomEyesColor = function () {
-  return eyesColors[_getRandomNumber(eyesColors.length)];
- }
+  return eyesColors[getRandomNumber(eyesColors.length)];
+};
 
 /**
  * Функция для создания массива из 4 сгенерированных JS объектов - магов.
@@ -100,6 +105,7 @@ var generateRandomEyesColor = function () {
  * @param {array} wizards - массив, состоящий из 4-х сгенерированных JS объектов, описывающих похожих персонажей
  * @param {object} - сгенерированный маг, содержащий поля name, coatColor и eyesColor
  */
+
 var wizards = [];
 
 var generateArrayOfWizards = function () {
@@ -108,7 +114,7 @@ var generateArrayOfWizards = function () {
       name: generateRandomFirstWizardName() + ' ' + generateRandomSecondWizardName(),
       coatColor: generateRandomСoatColor(),
       eyesColor: generateRandomEyesColor()
-    }
+    };
   }
   return wizards;
 };
@@ -125,17 +131,17 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
-// Имя персонажа name запишите как текст в блок .setup-similar-label;
+  // Имя персонажа name запишите как текст в блок .setup-similar-label;
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
 
-// Цвет мантии coatColor задайте как цвет заливки fill в стилях элемента .wizard-coat;
+  // Цвет мантии coatColor задайте как цвет заливки fill в стилях элемента .wizard-coat;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
 
-//Цвет глаз eyesColor задайте как цвет заливки fill в стилях элемента .wizard-eyes.
+  // Цвет глаз eyesColor задайте как цвет заливки fill в стилях элемента .wizard-eyes.
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
   return wizardElement;
-}
+};
 
 // Отрисуйте сгенерированные DOM-элементы в блок .setup-similar-list. Для вставки элементов используйте DocumentFragment.
 var fragment = document.createDocumentFragment();

@@ -84,7 +84,7 @@ window.renderStatistics = function (ctx, players, times) {
     // Выводим имена игроков под гистограммой
     ctx.fillText(players[i], BAR_START_X + GAP + BAR_GAP * i, PLAYER_START_Y);
     // Выводим очки над гистограммой
-    ctx.fillText(Math.floor(times[i]), BAR_START_X + GAP + BAR_GAP * i, (SCORE_START_Y - (BAR_HEIGHT_MAX * times[i]) / maxTime * - 1) - 3 * GAP);
+    ctx.fillText(Math.floor(times[i]), BAR_START_X + GAP + BAR_GAP * i, (SCORE_START_Y - (BAR_HEIGHT_MAX * times[i]) / maxTime * -1) - 3 * GAP);
     // Определяем цвет игрока 'Вы' и генерируем saturation синего цвета остальных игроков
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
