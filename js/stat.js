@@ -48,6 +48,17 @@ var getMaxElement = function (arr) {
 };
 
 /**
+  * Функция генерации случайного числа в зависимости от указанного интервала
+  *
+  * @param {number} min - минимальное значение числа
+  * @param {number} max - максимальное значение числа
+  * @return {number} - значение случайного числа
+*/
+var generateRandomNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min) + 1) + min;
+};
+
+/**
  * Функция отрисовывает гистограмму
  *
  * @param {object} ctx - контекст отображения
@@ -73,12 +84,12 @@ window.renderStatistics = function (ctx, players, times) {
     // Выводим имена игроков под гистограммой
     ctx.fillText(players[i], BAR_START_X + GAP + BAR_GAP * i, PLAYER_START_Y);
     // Выводим очки над гистограммой
-    ctx.fillText(Math.round(times[i]), BAR_START_X + GAP + BAR_GAP * i, (SCORE_START_Y - (BAR_HEIGHT_MAX * times[i]) / maxTime * - 1) - 3 * GAP);
+    ctx.fillText(Math.floor(times[i]), BAR_START_X + GAP + BAR_GAP * i, (SCORE_START_Y - (BAR_HEIGHT_MAX * times[i]) / maxTime * - 1) - 3 * GAP);
     // Определяем цвет игрока 'Вы' и генерируем saturation синего цвета остальных игроков
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'hsl(240, ' + (Math.random() * 100 + 1) + '%, 50%)';
+      ctx.fillStyle = 'hsl(240, ' + generateRandomNumber(0, 100) + '%, 50%)';
     }
     // Рисуем гистограмму исходя из очков
     ctx.fillRect(BAR_START_X + GAP + BAR_GAP * i, BAR_START_Y + BAR_GAP, BAR_WIDTH, (BAR_HEIGHT_MAX * times[i]) / maxTime);
